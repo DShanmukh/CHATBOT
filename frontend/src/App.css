@@ -6,7 +6,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #4c5fd7 0%, #8a2be2 100%);
+  background: white;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -28,7 +28,11 @@ body {
 
 .sidebar {
   width: 60px;
-  background: linear-gradient(180deg, #202b38, #2e3b4a);
+  /* background: linear-gradient(180deg, #202b38, #2e3b4a); */
+  background-image: url(https://argano.com/assets/images/logo.svg?1747061990);
+  background-repeat: no-repeat;
+  background-size:contain;
+  background-position: bottom;   
   padding: 20px;
   color: white;
   transition: width 0.4s ease;
@@ -38,13 +42,25 @@ body {
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  width: 400px;
+  padding-bottom: 120px;
+  /* position: relative;  */
 }
-
-.sidebar.expanded {
+.sidebar{
+  width: 400px;
+}
+.sidebar {
+  color: #212529;
+  background-color: #21a3c4;  /* <-- Dark text color for your sidebar text */
+}
+.sidebar h3, .sidebar-text {
+  color: #212529; /* Ensures headings/text inside sidebar are also dark */
+}
+/* .sidebar.expanded {
   width: 240px;
-}
+} */
 
-.sidebar-toggle {
+/* .sidebar-toggle {
   display: none;
   position: absolute;
   top: 10px;
@@ -60,18 +76,18 @@ body {
   align-items: center;
   justify-content: center;
   transition: background 0.3s ease;
-}
+} */
 
-.sidebar-toggle:hover {
+/* .sidebar-toggle:hover {
   background: rgba(255, 255, 255, 0.4);
-}
+} */
 
 .sidebar h3 {
   font-size: clamp(16px, 2vw, 22px);
   margin-top: 30px;
   margin-bottom: 10px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  /* opacity: 0; */
+  /* transition: opacity 0.3s ease; */
   text-align: center;
   font-weight: 500;
   width: 100%;
@@ -85,10 +101,10 @@ body {
 }
 
 .sidebar-text {
-  margin-top: 5px;
+  margin-top: 100px;
   font-size: clamp(12px, 1.6vw, 15px);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  /* opacity: 0; */
+  /* transition: opacity 0.3s ease; */
   text-align: center;
   line-height: 1.4;
   white-space: normal;
@@ -108,15 +124,16 @@ body {
   font-weight: bold;
   padding: 10px 18px;
   border-radius: 22px;
-  display: inline-block;
-  margin-top: 14px;
-  transition: all 0.3s ease;
-  opacity: 0;
-  transform: translateY(10px);
-  touch-action: manipulation;
+  /* display: inline-block; */
+  margin-top: 100px;
+  /* transition: all 0.3s ease; */
+  /* opacity: 0; */
+  /* transform: translateY(10px); */
+  /* touch-action: manipulation; */
 }
 
-.sidebar:hover .argano-btn,
+
+/* .sidebar:hover .argano-btn,
 .sidebar.expanded .argano-btn {
   opacity: 1;
   transform: translateY(0);
@@ -126,7 +143,7 @@ body {
   opacity: 0.9;
   transform: translateY(-2px);
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
-}
+} */
 
 .chat-container {
   flex: 1;
@@ -156,6 +173,11 @@ body {
   word-wrap: break-word;
   font-weight: 500;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  min-width: 120px;  
+  font-size: 14px;   
+  overflow: hidden;  
+  word-break: break-word;
 }
 
 .bot-msg {
@@ -164,6 +186,9 @@ body {
   color: #2c3e50;
   align-self: flex-start;
   animation: slideInLeft 0.25s ease;
+  /* border-image: url(https://argano.com/assets/images/logo.svg?1747061990); */
+  border-image-width: 50%;
+  
 }
 
 .user-msg {
@@ -405,5 +430,78 @@ body {
 
   .messages-container {
     scroll-behavior: auto;
+  }
+}
+.container {
+  overflow: hidden;
+}
+.mail{
+  width: 40%;
+  height: 30%;
+  border: 2 solid black;
+  box-shadow: 0 0 0 1 red;
+  display: flex;
+
+}
+/* ---- EXTRA CSS YOU ASKED TO ADD ONLY ---- */
+
+/* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Popup Modal Box */
+.popup-box {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  animation: popupFade 0.2s ease-in-out;
+}
+
+/* Close Button */
+.popup-close {
+  background: #21a3c4;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.popup-close:hover {
+  background: #157993;
+}
+
+/* Animation */
+@keyframes popupFade {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+/* ---- RESPONSIVE FIX FOR SMALL SCREENS ---- */
+
+@media (max-width: 650px) {
+  .popup-box {
+    width: 90%;
+    padding: 18px;
+  }
+
+  .popup-close {
+    width: 100%;
   }
 }
