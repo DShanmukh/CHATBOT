@@ -146,7 +146,7 @@ const Chatbot = () => {
           <div className="modal-dialog modal-fullscreen">
             <div className="modal-content d-flex flex-column h-100">
               <div className="modal-header">
-                <h5 className="modal-title">Email Summary</h5>
+                <h5 className="modal-title">Summarized Chat Ready to email</h5>
                 <button type="button" className="btn-close" onClick={closePopup}></button>
               </div>
               <div className="modal-body d-flex flex-column gap-4 p-4 overflow-auto">
