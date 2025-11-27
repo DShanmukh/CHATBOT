@@ -1,4 +1,7 @@
-* {
+/* Global Reset and Base Styles - Optimized for Performance */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -6,140 +9,140 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background: white;
-  height: 100vh;
-  display:block;
+  background: #f8f9fa; /* Subtle background for better contrast */
+  min-height: 100vh;
+  display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Prevents full-screen scrolling */
+  overflow: hidden; /* Prevents page scrolling */
+  color: #212529; /* Default text color for consistency */
 }
 
+/* Main Container - Enhanced Responsiveness and Containment */
 .main-container {
-  display: block;
-  width: 90vw;
   max-width: 1200px;
-  height: 500px; /* Reduced from 600px for a smaller, fixed container */
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  height: clamp(80vh, 90vh, 95vh); /* Responsive height using clamp for better scaling */
   overflow: hidden;
-  animation: fadeIn 0.45s ease-in-out;
+  border-radius: 12px; /* Softer corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Deeper shadow for depth */
 }
 
+/* Sidebar - Improved Background and Layout */
 .sidebar {
-  width: 300px; /* Reduced from 400px for a more compact layout */
-  background-image: url(https://argano.com/assets/images/logo.svg?1747061990);
+  background: linear-gradient(135deg, #21a3c4 0%, #157993 100%), 
+              url(https://argano.com/assets/images/logo.svg?1747061990);
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: bottom;
-  padding: 20px;
+  background-position: bottom center;
   color: white;
-  transition: width 0.4s ease;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  padding-bottom: 120px;
-  background-color: #21a3c4;
-  /* position: fixed; */
+  transition: all 0.3s ease; /* Smooth transitions for hover/focus */
 }
 
-.sidebar h3, .sidebar-text {
-  color: #212529;
-}
-
-.sidebar h3 {
-  font-size: clamp(16px, 2vw, 22px);
-  margin-top: 30px;
-  margin-bottom: 10px;
-  text-align: center;
-  font-weight: 500;
-  width: 100%;
-  line-height: 1.2;
-  white-space: normal;
-  word-break: break-word;
+.sidebar:hover {
+  transform: scale(1.02); /* Subtle hover effect */
 }
 
 .sidebar-text {
-  margin-top: 100px;
-  font-size: clamp(12px, 1.6vw, 15px);
-  text-align: center;
-  line-height: 1.4;
-  white-space: normal;
-  word-break: break-word;
-  max-width: 180px;
+  max-width: 90%;
+  line-height: 1.6; /* Better readability */
 }
 
 .argano-btn {
   background: linear-gradient(135deg, #61dafb 0%, #21a3c4 100%);
   color: white;
   text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 10px 18px;
-  border-radius: 22px;
-  margin-top: 100px;
+  font-weight: 600; /* Slightly bolder for emphasis */
+  border-radius: 25px; /* More rounded for modern look */
+  padding: 12px 20px; /* Consistent padding */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
+.argano-btn:hover,
+.argano-btn:focus {
+  transform: translateY(-3px) scale(1.05); /* Enhanced hover with scale */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  outline: none; /* Remove default outline */
+}
+
+/* Chat Container - Optimized Flex and Positioning */
 .chat-container {
-  flex: 1;
+  height: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
-  background: #f3f4f6;
 }
 
+/* Messages Container - Smooth Scrolling and Better Spacing */
 .messages-container {
   flex: 1;
-  padding: 16px;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
   scroll-behavior: smooth;
-  max-height: calc(100% - 80px); /* Ensures space for input, prevents overflow */
+  padding: 1rem;
+  gap: 0.75rem; /* Consistent gap */
 }
 
+.messages-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+/* Message Styles - Enhanced Animations and Accessibility */
 .bot-msg,
 .user-msg {
-  max-width: 68%;
-  width: fit-content;
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-size: 14px;
+  max-width: 75%;
+  padding: 0.75rem 1rem;
+  border-radius: 18px;
+  font-size: 0.95rem;
   line-height: 1.5;
   word-wrap: break-word;
   font-weight: 500;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   min-width: 120px;
   word-break: break-word;
+  transition: all 0.2s ease; /* Smooth hover effects */
 }
 
 .bot-msg {
-  background: #eef3fd;
-  border: 1px solid #d7e2f5;
-  color: #2c3e50;
+  background: #e9ecef;
+  border: 1px solid #dee2e6;
+  color: #495057;
   align-self: flex-start;
-  animation: slideInLeft 0.25s ease;
+  animation: slideInLeft 0.3s ease-out;
+}
+
+.bot-msg:hover {
+  background: #f8f9fa;
 }
 
 .user-msg {
-  background: #3A6DFF;
+  background: #007bff;
   color: white;
   align-self: flex-end;
-  animation: slideInRight 0.25s ease;
+  animation: slideInRight 0.3s ease-out;
 }
 
+.user-msg:hover {
+  background: #0056b3;
+}
+
+/* Typing Indicator - Refined Animation */
 .typing-indicator {
-  background: #eef3fd;
-  padding: 6px 10px;
-  border-radius: 14px;
+  background: #e9ecef;
+  padding: 0.5rem 0.75rem;
+  border-radius: 18px;
   align-self: flex-start;
-  border: 3px solid white;
+  border: 1px solid #dee2e6;
   display: inline-flex;
-  animation: slideInLeft 0.25s ease;
+  animation: slideInLeft 0.3s ease-out;
 }
 
 .typing-dots {
@@ -150,211 +153,255 @@ body {
 .typing-dots span {
   width: 6px;
   height: 6px;
-  background: #555;
+  background: #6c757d;
   border-radius: 50%;
-  animation: typing 1.4s infinite;
+  animation: typing 1.5s infinite ease-in-out;
 }
 
+/* Input Container - Sticky and Accessible */
 .input-container {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
   background: white;
-  padding: 12px 16px;
-  display: flex;
-  gap: 10px;
-  border-top: 1px solid #ddd;
-  
+  border-top: 2px solid #e9ecef;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Top shadow for separation */
 }
 
-.input-box {
-  flex: 1;
-  padding: 8px 14px;
-  font-size: 15px;
-  border-radius: 20px;
-  border: 1.8px solid #cfd2d4;
-  background: #f0f2f5;
+.input-container .form-control {
+  border-radius: 25px;
+  border: 2px solid #ced4da;
   transition: all 0.3s ease;
 }
 
-.input-box:focus {
-  background: white;
-  border-color: #3A6DFF;
-  box-shadow: 0 0 6px rgba(58, 109, 255, 0.25);
+.input-container .form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
   outline: none;
 }
 
-.send-button {
-  background: #3A6DFF;
-  border: none;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 20px;
-  cursor: pointer;
+.input-container .btn {
+  border-radius: 25px;
   font-weight: 600;
-  transition: 0.3s;
-  touch-action: manipulation;
+  transition: all 0.3s ease;
 }
 
-.send-button:hover {
-  background: #2c56cc;
+.input-container .btn:hover {
   transform: translateY(-2px);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+/* Popup Styles - Full-Screen and Responsive */
+.modal-fullscreen .modal-content {
+  height: 100vh;
+  border-radius: 0;
+  background: white;
 }
 
+.modal-header {
+  background: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-body {
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+.email-fields,
+.summary-block {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.email-fields:hover,
+.summary-block:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.email-fields input:disabled,
+.summary-block textarea:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.summary-block textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Animations - Smoother and More Efficient */
 @keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translateX(-15px);
+    transform: translateX(-20px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
   }
 }
 
 @keyframes slideInRight {
   from {
     opacity: 0;
-    transform: translateX(15px);
+    transform: translateX(20px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
   }
 }
 
 @keyframes typing {
-  0%, 60%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-6px); }
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
 }
 
-@media (max-width: 1024px) {
+/* Responsive Adjustments - More Granular Breakpoints */
+@media (max-width: 1199px) { /* Large tablets */
   .main-container {
-    width: 95vw;
-    height: 400px; /* Adjusted for smaller screens */
-  }
-
-  .bot-msg, .user-msg {
-    max-width: 70%;
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 900px) {
-  .sidebar h3 {
-    font-size: 18px;
-  }
-
-  .sidebar-text {
-    font-size: 13px;
-    max-width: 70%;
-  }
-}
-
-@media (max-width: 850px) {
-  .main-container {
-    flex-direction: column;
-    height: 80vh; /* Fixed height using viewport for mobile */
-  }
-
-  .sidebar {
-    width: 100%;
-    height: 120px;
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  .sidebar.expanded {
-    height: 150px;
-    width: 100%;
-  }
-
-  .argano-btn {
-    padding: 8px 14px;
-  }
-}
-
-@media (max-width: 600px) {
-  .sidebar {
-    height: auto !important;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 15px 10px;
-  }
-
-  .sidebar h3 {
-    font-size: 16px;
-    margin-top: 6px;
-  }
-
-  .sidebar-text {
-    font-size: 12px;
-    max-width: 90%;
-    margin-top: 4px;
-  }
-
-  .argano-btn {
-    font-size: 13px;
-    padding: 8px 14px;
-    margin-top: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-container {
-    width: 98vw;
-    height: 95vh; /* Adjusted for very small screens */
+    height: 85vh;
   }
 
   .bot-msg, .user-msg {
     max-width: 80%;
-    font-size: 13px;
-    padding: 8px 12px;
-  }
-
-  .input-box {
-    font-size: 14px;
-    padding: 7px 10px;
-  }
-
-  .send-button {
-    padding: 8px 12px;
-    font-size: 14px;
+    font-size: 0.9rem;
   }
 }
 
-@media (max-width: 400px) {
-  .sidebar h3 {
-    font-size: 14px;
+@media (max-width: 991px) { /* Tablets */
+  .main-container {
+    height: 90vh;
+  }
+
+  .sidebar {
+    padding: 1rem;
   }
 
   .sidebar-text {
-    font-size: 11px;
+    font-size: 0.85rem;
   }
 
   .argano-btn {
-    padding: 6px 12px;
-    font-size: 12px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  .messages-container {
+    padding: 0.75rem;
+  }
+
+  .bot-msg, .user-msg {
+    max-width: 85%;
+    padding: 0.6rem 0.9rem;
+  }
+
+  .input-container {
+    padding: 0.75rem 1rem;
+  }
+
+  .modal-body {
+    padding: 1.5rem;
   }
 }
 
+@media (max-width: 767px) { /* Mobile */
+  .main-container {
+    height: 95vh;
+    border-radius: 0;
+  }
+
+  .sidebar {
+    padding: 0.75rem;
+  }
+
+  .sidebar h3 {
+    font-size: 1.1rem;
+  }
+
+  .sidebar-text {
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+  }
+
+  .argano-btn {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+
+  .messages-container {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .bot-msg, .user-msg {
+    max-width: 90%;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .input-container {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .input-container .form-control {
+    font-size: 0.9rem;
+  }
+
+  .input-container .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+
+  .email-fields .row > div {
+    margin-bottom: 1rem;
+  }
+
+  .summary-block textarea {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 575px) { /* Small mobile */
+  .bot-msg, .user-msg {
+    max-width: 95%;
+    font-size: 0.8rem;
+  }
+
+  .input-container .form-control {
+    font-size: 0.85rem;
+  }
+
+  .input-container .btn {
+    font-size: 0.8rem;
+  }
+}
+
+/* Accessibility and Motion Preferences */
 @media (prefers-reduced-motion: reduce) {
-  .sidebar,
   .bot-msg,
   .user-msg,
   .typing-indicator,
-  .main-container,
-  .send-button,
-  .argano-btn {
+  .argano-btn,
+  .email-fields,
+  .summary-block,
+  .input-container .form-control,
+  .input-container .btn {
     animation: none;
     transition: none;
   }
@@ -364,85 +411,21 @@ body {
   }
 }
 
-.container {
-  overflow: hidden;
-}
-
-.mail {
-  width: 40%;
-  height: 30%;
-  border: 2px solid black;
-  box-shadow: 0 0 0 1px red;
-  display: flex;
-}
-
-/* Popup Overlay */
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-/* Popup Modal Box */
-.popup-box {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  width: 400px;
-  max-width: 90%;
-  text-align: center;
-  animation: popupFade 0.2s ease-in-out;
-}
-
-/* Close Button */
-.close-btn {
-  background: #21a3c4;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  
-}
-
-.close-btn:hover {
-  background: #157993;
-}
-
-/* Animation */
-@keyframes popupFade {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* Responsive Fix for Small Screens */
-@media (max-width: 650px) {
-  .popup-box {
-    width: 90%;
-    padding: 18px;
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .bot-msg {
+    background: white;
+    border: 2px solid black;
+    color: black;
   }
 
-  .close-btn {
-    width: 100%;
+  .user-msg {
+    background: black;
+    color: white;
   }
-}
-.yes-btn {
-  background: #28a745; /* Green color for "Yes" */
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.yes-btn:hover {
-  background: #218838;
+
+  .sidebar {
+    background-color: black;
+    color: white;
+  }
 }
