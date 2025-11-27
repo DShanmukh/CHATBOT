@@ -9,15 +9,10 @@ const Chatbot = () => {
   ]);
   // use states
   const [input, setInput] = useState("");
-  const [sidebarVisible, setSidebarVisible] = useState(false);
   const [isBotTyping, setIsBotTyping] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
   const [showPopup, setshowPop] = useState(false);
-  React.useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 850);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const [showSecondPopup,setSecondshowPopup ] = useState(false);
+  
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -48,18 +43,17 @@ const Chatbot = () => {
     }
   };
    const Summarize =() =>{
-    alert("Summerized");
     setshowPop(true);
     // <Mail/>
   }
   const closePopup =() =>{
     setshowPop(false);
   }
+  const closeSecondPopup =() =>{
+    setSecondshowPopup(false);
+  }
 
-  const toggleSidebar = () => {
-    if (isMobile) setSidebarVisible(!sidebarVisible);
-  };
-
+  
   return (
     <div className="container-fluid vh-100 d-flex justify-content-center align-items-center">
       <div className="row w-100" style={{ maxWidth: '1200px', height: '600px' }}>
@@ -144,6 +138,15 @@ const Chatbot = () => {
           <div className="popup-box bg-white p-4 rounded text-center" style={{ width: '400px', maxWidth: '90%' }}>
             <Mail />
             <button className="close-btn btn btn-secondary mt-3" onClick={closePopup}>Close</button>
+          </div>
+        </div>
+      )}  
+      {showSecondPopup && (
+        <div className="popup-overlay d-flex justify-content-center align-items-center position-fixed w-100 h-100" style={{ zIndex: 1000, background: 'rgba(0, 0, 0, 0.5)' }}>
+          <div className="popup-box bg-white p-4 rounded text-center" style={{ width: '400px', maxWidth: '90%' }}>
+            <h4>Action Confirmed!</h4>
+            <p>Your summary has been processed.</p>
+            <button className="close-btn btn btn-secondary mt-3" onClick={closeSecondPopup}>Close</button>
           </div>
         </div>
       )}

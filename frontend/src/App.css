@@ -8,17 +8,17 @@ body {
   padding: 0;
   background: white;
   height: 100vh;
-  display: flex;
+  display:block;
   justify-content: center;
   align-items: center;
-  overflow: auto;
+  overflow: hidden; /* Prevents full-screen scrolling */
 }
 
 .main-container {
-  display: flex;
+  display: block;
   width: 90vw;
   max-width: 1200px;
-  height: 600px;
+  height: 500px; /* Reduced from 600px for a smaller, fixed container */
   background: white;
   border-radius: 15px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
@@ -27,12 +27,11 @@ body {
 }
 
 .sidebar {
-  width: 60px;
-  /* background: linear-gradient(180deg, #202b38, #2e3b4a); */
+  width: 300px; /* Reduced from 400px for a more compact layout */
   background-image: url(https://argano.com/assets/images/logo.svg?1747061990);
   background-repeat: no-repeat;
-  background-size:contain;
-  background-position: bottom;   
+  background-size: contain;
+  background-position: bottom;
   padding: 20px;
   color: white;
   transition: width 0.4s ease;
@@ -42,52 +41,19 @@ body {
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  width: 400px;
   padding-bottom: 120px;
-  /* position: relative;  */
+  background-color: #21a3c4;
+  /* position: fixed; */
 }
-.sidebar{
-  width: 400px;
-}
-.sidebar {
-  color: #212529;
-  background-color: #21a3c4;  /* <-- Dark text color for your sidebar text */
-}
+
 .sidebar h3, .sidebar-text {
-  color: #212529; /* Ensures headings/text inside sidebar are also dark */
+  color: #212529;
 }
-/* .sidebar.expanded {
-  width: 240px;
-} */
-
-/* .sidebar-toggle {
-  display: none;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s ease;
-} */
-
-/* .sidebar-toggle:hover {
-  background: rgba(255, 255, 255, 0.4);
-} */
 
 .sidebar h3 {
   font-size: clamp(16px, 2vw, 22px);
   margin-top: 30px;
   margin-bottom: 10px;
-  /* opacity: 0; */
-  /* transition: opacity 0.3s ease; */
   text-align: center;
   font-weight: 500;
   width: 100%;
@@ -96,24 +62,14 @@ body {
   word-break: break-word;
 }
 
-.sidebar.expanded h3 {
-  opacity: 1;
-}
-
 .sidebar-text {
   margin-top: 100px;
   font-size: clamp(12px, 1.6vw, 15px);
-  /* opacity: 0; */
-  /* transition: opacity 0.3s ease; */
   text-align: center;
   line-height: 1.4;
   white-space: normal;
   word-break: break-word;
   max-width: 180px;
-}
-
-.sidebar.expanded .sidebar-text {
-  opacity: 1;
 }
 
 .argano-btn {
@@ -124,26 +80,8 @@ body {
   font-weight: bold;
   padding: 10px 18px;
   border-radius: 22px;
-  /* display: inline-block; */
   margin-top: 100px;
-  /* transition: all 0.3s ease; */
-  /* opacity: 0; */
-  /* transform: translateY(10px); */
-  /* touch-action: manipulation; */
 }
-
-
-/* .sidebar:hover .argano-btn,
-.sidebar.expanded .argano-btn {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.argano-btn:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
-} */
 
 .chat-container {
   flex: 1;
@@ -160,6 +98,7 @@ body {
   flex-direction: column;
   gap: 12px;
   scroll-behavior: smooth;
+  max-height: calc(100% - 80px); /* Ensures space for input, prevents overflow */
 }
 
 .bot-msg,
@@ -174,9 +113,7 @@ body {
   font-weight: 500;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  min-width: 120px;  
-  font-size: 14px;   
-  overflow: hidden;  
+  min-width: 120px;
   word-break: break-word;
 }
 
@@ -186,9 +123,6 @@ body {
   color: #2c3e50;
   align-self: flex-start;
   animation: slideInLeft 0.25s ease;
-  /* border-image: url(https://argano.com/assets/images/logo.svg?1747061990); */
-  border-image-width: 50%;
-  
 }
 
 .user-msg {
@@ -227,6 +161,7 @@ body {
   display: flex;
   gap: 10px;
   border-top: 1px solid #ddd;
+  
 }
 
 .input-box {
@@ -304,7 +239,7 @@ body {
 @media (max-width: 1024px) {
   .main-container {
     width: 95vw;
-    height: 550px;
+    height: 400px; /* Adjusted for smaller screens */
   }
 
   .bot-msg, .user-msg {
@@ -327,7 +262,7 @@ body {
 @media (max-width: 850px) {
   .main-container {
     flex-direction: column;
-    height: 90vh;
+    height: 80vh; /* Fixed height using viewport for mobile */
   }
 
   .sidebar {
@@ -335,10 +270,6 @@ body {
     height: 120px;
     flex-direction: row;
     justify-content: center;
-  }
-
-  .sidebar-toggle {
-    display: flex;
   }
 
   .sidebar.expanded {
@@ -381,7 +312,7 @@ body {
 @media (max-width: 480px) {
   .main-container {
     width: 98vw;
-    height: 95vh;
+    height: 95vh; /* Adjusted for very small screens */
   }
 
   .bot-msg, .user-msg {
@@ -432,18 +363,18 @@ body {
     scroll-behavior: auto;
   }
 }
+
 .container {
   overflow: hidden;
 }
-.mail{
+
+.mail {
   width: 40%;
   height: 30%;
-  border: 2 solid black;
-  box-shadow: 0 0 0 1 red;
+  border: 2px solid black;
+  box-shadow: 0 0 0 1px red;
   display: flex;
-
 }
-/* ---- EXTRA CSS YOU ASKED TO ADD ONLY ---- */
 
 /* Popup Overlay */
 .popup-overlay {
@@ -471,7 +402,7 @@ body {
 }
 
 /* Close Button */
-.popup-close {
+.close-btn {
   background: #21a3c4;
   color: white;
   border: none;
@@ -479,10 +410,10 @@ body {
   font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 15px;
+  
 }
 
-.popup-close:hover {
+.close-btn:hover {
   background: #157993;
 }
 
@@ -492,16 +423,26 @@ body {
   to { opacity: 1; transform: scale(1); }
 }
 
-
-/* ---- RESPONSIVE FIX FOR SMALL SCREENS ---- */
-
+/* Responsive Fix for Small Screens */
 @media (max-width: 650px) {
   .popup-box {
     width: 90%;
     padding: 18px;
   }
 
-  .popup-close {
+  .close-btn {
     width: 100%;
   }
+}
+.yes-btn {
+  background: #28a745; /* Green color for "Yes" */
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.yes-btn:hover {
+  background: #218838;
 }
